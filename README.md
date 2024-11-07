@@ -45,3 +45,5 @@ Open [http://localhost:3000](http://localhost:3000) in your browser to see the a
 This project integrates information from a movies API and a weather API to subsequently send it to a webhook.
 
 There are many areas for improvement, including adding unit tests, better error handling, and consuming another API to increase the available cities. However, the project meets its main objective, which is to integrate multiple APIs.
+
+Additionally, since the role is for an AWS Developer, I chose to deploy the project using AWS Amplify to demonstrate my skills on the platform. You can view the deployed project at the following link: [https://main.d1ymkk3ok0gb8b.amplifyapp.com/](https://main.d1ymkk3ok0gb8b.amplifyapp.com/).
