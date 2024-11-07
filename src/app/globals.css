@@ -1,0 +1,32 @@
+.overview {
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+p {
+  margin-top: 0;
+  margin-bottom: 5px;
+}
+
+h2 {
+  margin-top: 5px;
+}
+
+button:hover {
+  background-color: #aaf;
+  cursor: pointer;
+}
+
+input { 
+  margin-top: 20px;
+  height: 20px;
+  width: 500px;
+  margin-right: 5px;
+}
+
+select {
+  height:25px;
+}
