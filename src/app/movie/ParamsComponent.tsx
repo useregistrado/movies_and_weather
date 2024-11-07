@@ -9,6 +9,7 @@ import Image from 'next/image'
 import NotFound from '@/app/not_found.svg'
 import { cities } from '../consts';
 import { getWeather } from '@/api/weather.api';
+import { sendToWebhook } from './webhook.api';
 
 export default function ParamsComponent() {
   const searchParams = useSearchParams();
@@ -17,7 +18,6 @@ export default function ParamsComponent() {
   const lat = searchParams.get('lat');
   const lon = searchParams.get('lon');
   const [movie, setMovie] = useState<any>();
-  const [weather, setWeather] = useState<any>();
   const [data, setData] = useState<any>({
     candidate: 'Oscar Yesid Vargas Pedraza',
     original_title: '',
@@ -25,6 +25,7 @@ export default function ParamsComponent() {
     genres: [],
     release_date: ''
   });
+  const [webhookResponse, setWebhookResponse] = useState('');
   const [src, setSrc] = useState(NotFound);
 
 
@@ -74,12 +75,13 @@ export default function ParamsComponent() {
 
       setData(additionalData);
     };
-    
+
 
     getDataWeather(city);
   }, [movie])
 
-  
+
+  console.log(JSON.stringify(data));
 
   return (
     <div style={{ display: 'flex', flexDirection: 'row' }}>
@@ -105,7 +107,11 @@ export default function ParamsComponent() {
         <p>max temperature: {data.max_temperature}</p>
         <p>min temperature: {data.min_temperature}</p>
         <br></br>
-        <button>Send data to webhook</button>
+        <button onClick={async () => {
+          const response = await (await sendToWebhook(data)).json()
+          setWebhookResponse(response.status)
+        }}>Send data to webhook</button>
+        <span>{webhookResponse}</span>
       </div>
     </div>
   );
