@@ -1,3 +1,6 @@
+# Oscar Yesid Vargas Pedraza
+[Linkedin](https://www.linkedin.com/in/oscar-vargas-python/)
+- AWS Developer
 
 # Movies and Weather Next.js Project
 
