@@ -7,3 +7,13 @@ export const searchMovies = async (title: string) => {
     },})
   return response;
 }
+
+export const searchOneMovie = async (id: number) => {
+  const response = await fetch(`${process.env.NEXT_PUBLIC_MOVIES_API_URL}movie/${id}`, {
+    method: 'GET',
+    headers: {
+      'Authorization': `Bearer ${process.env.NEXT_PUBLIC_MOVIES_TOKEN}`,
+      'Content-Type': 'application/json',
+    },})
+  return response;
+}
