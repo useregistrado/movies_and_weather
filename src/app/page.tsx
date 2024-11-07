@@ -6,6 +6,13 @@ import { MovieCard } from "./components/MovieCard";
 import { MovieType } from "./types";
 import { cities } from './consts';
 
+/**
+ * The Home component serves as the main page of a movie application, 
+ * allowing users to search for movies by title and display information based on the user's geographical location. 
+ * It uses the movie API to fetch results according to the entered title. 
+ * If geolocation is unavailable, it displays an error message and lets the user manually select a city from a dropdown list.
+ * @returns Main page /
+ */
 export default function Home() {
   const [movies, setMovies] = useState<MovieType[]>([]);
   const [title, setTitle] = useState('Manta manta'); // Default value
@@ -13,6 +20,9 @@ export default function Home() {
   const [error, setError] = useState<string | null>(null);
   const [city, setCity] = useState('null')
 
+  /**
+   * The getLocation function attempts to obtain the user's geographical location using the browser's geolocation API.
+   */
   const getLocation = () => {
     if ('geolocation' in navigator) {
       navigator.geolocation.getCurrentPosition(
@@ -33,6 +43,10 @@ export default function Home() {
     }
   };
 
+  /**
+   * It searches for movies using the provided title and updates the movies state with the obtained results. 
+   * Manta manta is default title.
+   */
   useEffect(() => {
     const getData = async () => {
       const response = await searchMovies(title);
@@ -45,16 +59,21 @@ export default function Home() {
     getLocation()
   }, [])
 
+  /**
+   * handles the change in the title input value
+   * @param event input value
+   */
   const handleChange = (event: { target: { value: SetStateAction<string>; }; }) => {
     setCity(event.target.value);
   };
 
+  /**
+   * renders and returns the data obtained from the API
+   */
   return (
     <section>
       <input onChange={(e) => { setTitle(e.target.value) }} type="text" name="name" placeholder="Enter title" />
-
       {error &&
-
         (
           <>
             <label>Select your city</label>

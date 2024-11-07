@@ -11,6 +11,11 @@ import { cities } from '../consts';
 import { getWeather } from '@/api/weather.api';
 import { sendToWebhook } from './webhook.api';
 
+
+/**
+ * fetches and displays detailed information about a movie and its associated weather, and allows sending this data to a webhook
+ * @returns component
+ */
 export default function ParamsComponent() {
   const searchParams = useSearchParams();
   const id = searchParams.get('id') || 1058100; // 1058100 default movie
@@ -29,6 +34,10 @@ export default function ParamsComponent() {
   const [src, setSrc] = useState(NotFound);
 
 
+  /**
+   * fetches movie data using its ID, updates the state with the movie details, 
+   * and prepares an object that includes movie information with empty temperature fields to add weather data later.
+   */
   useEffect(() => {
     const getDataMovie = async () => {
       const response = await searchOneMovie(+id);
@@ -51,6 +60,10 @@ export default function ParamsComponent() {
     getDataMovie();
   }, []);
 
+  /**
+   * fetches the weather for a movie's release date, using coordinates (latitude and longitude) if available or a default city otherwise. 
+   * It updates the state with the weather information, adding the maximum and minimum temperatures to the movie's data object.
+   */
   useEffect(() => {
     const getDataWeather = async (city: string) => {
 
@@ -75,13 +88,8 @@ export default function ParamsComponent() {
 
       setData(additionalData);
     };
-
-
     getDataWeather(city);
   }, [movie])
-
-
-  console.log(JSON.stringify(data));
 
   return (
     <div style={{ display: 'flex', flexDirection: 'row' }}>

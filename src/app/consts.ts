@@ -1,3 +1,6 @@
+/**
+ * cities array containing information about various cities, each with its name, geographical coordinates (latitude and longitude), and timezone.
+ */
 export const cities = [
   { name: "Berlin", coordinates: { lat: 52.52, lon: 13.405 }, timezone: "Europe/Berlin" },
   { name: "Amsterdam", coordinates: { lat: 52.3676, lon: 4.9041 }, timezone: "Europe/Amsterdam" },
